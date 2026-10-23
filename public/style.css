@@ -1,0 +1,258 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: clamp(16px, 0.8vw + 10px, 24px);
+}
+
+body {
+    color: rgba(255, 255, 255, 0.6);
+    transition: background 0.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #333;
+    min-height: 100dvh;
+    margin: 0;
+}
+
+.bg-clear {
+    background-image: url('img/debesis.png');
+}
+
+.bg-partly {
+    background-image: url('img/nedaudzMākoņains.png');
+}
+
+.bg-clouds {
+    background-image: url('img/mākoņains.png');
+}
+
+.bg-thunder {
+    background-image: url('img/zibens.png');
+}
+
+.bg-rain {
+    background-image: url('img/lietus.png');
+}
+
+.bg-snow {
+    background-image: url('img/sniegs.png');
+}
+
+.container {
+    width: min(100% - 2rem, 40rem);
+    margin-inline: auto;
+    padding: 1.5rem 0;
+}
+
+header {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.cityTitle {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    font: inherit;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: inherit;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.cityTitle:hover, .cityTitle:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.cityTitle::placeholder {
+    opacity: 0.6;
+}
+
+#searchButton {
+    flex: none;
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#searchButton img {
+
+    display: block;
+    width: 3rem;
+    height: 3rem;
+}
+
+#searchButton:hover, #searchButton:active {
+    transform: scale(1.2);
+}
+
+.mainInfo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+.secondInfo {
+    display: grid;
+    grid-template-columns: 1fr minmax(200px, 200px);
+    align-items: center;
+    gap: 1rem;
+}
+
+.tempColumn, .weatherColumn {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.weatherColumn {
+    justify-items: center;
+}
+
+.tempDisplay {
+    line-height: 1;
+    font-weight: bolder;
+    font-size: 5rem;
+}
+
+#weatherIcon {
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-mask-image: radial-gradient(circle closest-side, black 85%, transparent 100%);
+    mask-image: radial-gradient(circle closest-side, black 50%, transparent 100%);
+}
+
+#weatherDescription {
+    text-align: center;
+    margin: 0;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    justify-content: center;
+    gap: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    margin-top: 0.75rem;
+}
+
+.individualDetails {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 400px) {
+    .mainInfo, .secondInfo {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+    .tempDisplay { font-size: 4rem; }
+    #weatherIcon { width: 6rem; height: 6rem; }
+    #weatherDescription { text-align: center; }
+}
+
+@media (max-height: 500px) {
+    #weatherIcon { width: 5rem; height: 5rem; }
+    .tempDisplay { font-size: 3.5rem; }
+}
+
+.sectionTitle {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.hourly {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x proximity;
+}
+
+.hour {
+    flex: 0 0 auto;
+    min-width: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    scroll-snap-align: start;
+}
+
+.hour img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.daily {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.day {
+    display: grid;
+    grid-template-columns: 4.5rem 3rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.day img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.dayName {
+    text-transform: capitalize;
+}
+
+.dayTemps {
+    text-align: right;
+    white-space: nowrap;
+}
+
+#map {
+    height: 20rem;
+    margin-top: 1.5rem;
+    border-radius: 1rem;
+    isolation: isolate;
+}
+
+.owm-strong {
+    filter: url(#boostAlpha) saturate(1.5);
+}
+.owm-medium {
+    filter: url(#boostMedium);
+}
+.owm-soft {
+    filter: saturate(0.75);
+}
+
+@media (max-width: 400px) {
+    #map { height: 16rem; }
+}

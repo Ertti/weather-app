@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EWeather</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <filter id="boostAlpha" color-interpolation-filters="sRGB">
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="4"/>
+            </feComponentTransfer>
+        </filter>
+        <filter id="boostMedium" color-interpolation-filters="sRGB">
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="2"/>
+            </feComponentTransfer>
+        </filter>
+    </svg>
+
+    <div class="container">
+        <header>
+            <input type="text" id="cityInput" class="cityTitle" placeholder="Ievadiet pilsētu/ciemu" autocapitalize="off" spellcheck="false">
+            <button id="searchButton" onclick="getWeatherByCity()"><img src="img/meklēt.png" alt="meklēšanas logotips"></button>
+        </header>
+
+        <div class="weather-card" id="weatherCard" style="display: none;">
+            <div class="mainInfo">
+                <div class="tempColumn">
+                    <div class="tempDisplay">
+                        <span id="tempValue">--</span>°C
+                    </div>
+                    <div>Pēc sajūtām <span id="feelsLike">--</span>°C</div>
+                </div>
+                <div class="weatherColumn">
+                    <img id="weatherIcon" alt="Laikapstākļu ikona" width="200" height="200">
+                </div>
+            </div>
+
+            <div class="secondInfo">
+                <div>
+                    <div>24h Augstākā: <span id="maxTemperature">--</span>°C</div>
+                    <div>24h Zemākā: <span id="minTemperature">--</span>°C</div>
+                </div>
+                <p id="weatherDescription">Ielādē...</p>
+            </div>
+            
+            <h2 class="sectionTitle">Stundu prognoze</h2>
+            <div id="hourly" class="hourly"></div>
+
+            <div id="map"></div>
+
+            <h2 class="sectionTitle">Dienu prognoze</h2>
+            <div id="daily" class="daily"></div>
+
+            <div class="details">
+                <div class="individualDetails">
+                    <div>
+                        Mitrums <br><span id="humidity">--</span>%
+                    </div>
+                </div>
+                <div class="individualDetails">
+                    <div>
+                        Vējš <br><span id="wind">--</span><br> m/s
+                    </div>
+                </div>
+                <div class="individualDetails">
+                    <div>
+                        Spiediens <br><span id="pressure">--</span><br> hPa
+                    </div>
+                </div>
+                <div class="individualDetails">
+                    <div>
+                        Redzamība <br><span id="visibility">--</span><br> km
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="loadingMessage"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
